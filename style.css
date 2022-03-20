@@ -1,0 +1,223 @@
+/* ============================== Initial Styling ============================ */
+    
+
+    *, *::before, *::after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .slide-container, .border-container {
+        display: flex;
+        flex-direction: column;
+        margin: 5rem;
+    }
+
+    .btn {
+        background-color: rgb(189, 189, 189);
+        color: #000;
+        border: none;
+        outline: none;
+        width: 150px;
+        height: 40px;
+        position: relative;
+        cursor: pointer;
+        margin: 1rem;
+        padding: 0.5em 1em;
+    }
+
+
+/* =============================================================================================================== */
+
+
+
+
+/* ======================================= Slide Effect Styling ============================================== */
+
+
+    /* ====== Apply these stylings regardless of slide direction ===== */
+        .top-slide, .right-slide, .middle-slide, .bottom-slide, .left-slide{
+            transition: 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+
+        .top-slide::before, .right-slide::before, .middle-slide::before, .bottom-slide::before, .left-slide::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                z-index: -1;
+                background-color: #0af;
+                transition: 0.3s ease-in-out;
+        }
+
+        .top-slide:hover, .right-slide:hover, .middle-slide:hover, .bottom-slide:hover, .left-slide:hover {
+            color: white;
+        }
+    /* ============================= */
+
+
+
+    /* ====== Apply these stylings if you want right, middle, or left slide direction ===== */
+        .right-slide::before, .middle-slide::before, .left-slide::before {
+            transform: scaleX(0);
+        }
+
+        .right-slide:hover::before, .middle-slide:hover::before, .left-slide:hover::before {
+            transform: scaleX(1);
+        }
+    /* ============================= */
+
+
+
+    /* ====== Apply these stylings if you want top, or bottom slide direction ===== */
+        .top-slide::before, .bottom-slide::before {
+            transform: scaleY(0);
+        }
+
+        .top-slide:hover::before, .bottom-slide:hover::before {
+            transform: scaleY(1);
+        }
+    /* ============================= */
+
+
+    /* ====== Top Slide ====== */
+    .top-slide::before {
+        transform-origin: top;
+    }
+
+
+    /* ====== Right Slide ====== */
+    .right-slide::before {
+        transform-origin: right;
+    }
+
+
+    /* effect will slide from the middle by default so we don't need to do anything here for middle slide */
+
+
+    /* ====== Bottom Slide ====== */
+    .bottom-slide::before {
+        transform-origin: bottom;
+    }
+
+
+    /* ====== Left Slide ====== */
+    .left-slide::before {
+        transform-origin: left;
+    }
+
+
+/* =============================================================================================================== */
+
+
+
+/* ======================================= Border Effect Styling ============================================== */
+
+
+    /* ====== Apply these stylings regardless of which side of the button you want the border to appear on ===== */
+        .top-border, .right-border, .bottom-border, .left-border {
+            transition: 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+
+        .top-border::before, .right-border::before, .bottom-border::before, .left-border::before {
+            content: '';
+            position: absolute;
+            background-color: #0af; 
+            z-index: -1;
+            transition: 0.3s ease-in-out;
+        }
+    /* ============================= */
+
+
+    /* ====== Apply these stylings if you want the border to appear on the top or the bottom of the button ===== */
+        .top-border::before, .bottom-border::before {
+            transform: scaleX(0);
+        }
+
+        .top-border:hover::before, .bottom-border:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* This one actually isn't necessary. You can choose not to include it if you want your border to slide in from the middle. Or, you can also change this to right to make the border slide in from the right */
+        .top-border::before, .bottom-border::before {
+            transform-origin: left;
+        }
+    /* ============================= */
+
+
+    /* ====== Apply these stylings if you want the border to appear on the right side or the left side of the button ===== */
+        .right-border::before, .left-border::before {
+            transform: scaleY(0);
+        }
+
+        .right-border:hover::before, .left-border:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* This one actually isn't necessary. You can choose not to include it if you want your border to slide in from the middle. Or, you can also change this to top to make the border slide in from the top */
+        .right-border::before, .left-border::before {
+            transform-origin: bottom;
+        }
+    /* ============================= */
+
+
+
+    /* ======= top border =======*/
+    .top-border::before {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        /* here we're using height to define the border-width. you can change it if you want a wider or thinner border */
+        height: 2px;
+    }
+
+    /* ======= right border =======*/
+    .right-border::before {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        /* change the height to be the height of your button. in this case 40px cause the button's height is 40px */
+        height: 40px;
+        /* here we're using width to define the border-width. you can change it if you want a wider or thinner border */
+        width: 2px;
+    }
+
+    /* ======= bottom border =======*/
+    .bottom-border::before {
+        bottom: 0;
+        right: 0;
+        left: 0;
+        /* here we're using height to define the border-width. you can change it if you want a wider or thinner border */
+        height: 2px;
+    }
+
+    /* ======= left border =======*/
+    .left-border::before {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        /* change the height to be the height of your button. in this case 40px cause the button's height is 40px */
+        height: 40px;
+        /* here we're using width to define the border-width. you can change it if you want a wider or thinner border */
+        width: 2px;
+    }
+
+
+/* =============================================================================================================== */
